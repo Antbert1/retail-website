@@ -1,12 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setFilterValue, setClothingList, setFilteredClothingList } from '../redux/actions';
+import { setFilterValue, setBasket, setFilteredClothingList, setBasketIDs } from '../redux/actions';
 import Button from '../components/Button';
 
 function ItemList() {
     const dispatch = useDispatch();
     const clothingData = useSelector((state => state.dataReducer.filteredClothingList));
     const clothingDataFull = useSelector((state => state.dataReducer.clothingList));
+    const basket = useSelector((state => state.dataReducer.basket));
+    const basketIDs = useSelector((state => state.dataReducer.basketIDs));
 
     const filterByCategory = (category) => {
         const filteredItems = clothingDataFull.filter(function (item) {
@@ -23,12 +25,40 @@ function ItemList() {
     }
 
     const addToBasket = (item) => {
-        debugger;
+        item.inBasket = true;
+        let basketCopy = [...basket];
+        let basketIDsCopy = [...basketIDs];
+        basketIDsCopy.push(item.id);
+        basketCopy.push(item);
+        dispatch(setBasket(basketCopy));
+        dispatch(setBasketIDs(basketIDsCopy));
+    }
+
+    const removeFromBasket = (item) => {
+        const basketCopy = basket.filter(function (obj) {
+            return obj.id !== item.id;
+        });
+        let basketIDsNew = basketIDs.filter(function (id) {
+            return id !== item.id
+        })
+        dispatch(setBasketIDs(basketIDsNew));
+        dispatch(setBasket(basketCopy));
+    }
+
+    const renderAddButton = (item) => {
+        //Check if basketIDs contains the current id
+        if (item.quantity === 0) {
+            return <div className="itemUnavailable">Item Unavailable</div>
+        } else if (!basketIDs.includes(item.id)) {
+            return <Button title="Add To Basket" classes="customBtn greenBtn" buttonClicked={() => addToBasket(item)} />
+        } else {
+            return <Button title="Remove From Basket" classes="customBtn redBtn" buttonClicked={() => removeFromBasket(item)} />
+        }
     }
 
     const showItem = (item, index) => {
         return (
-            <div className="item">
+            <div className="item" key={index}>
                 <div className="itemImg">
                     <img
                         src={item.image}
@@ -53,7 +83,7 @@ function ItemList() {
                             <div className="quantity">Out of Stock</div>
                         }
                     </div>
-                    <Button title="Add To Basket" classes="customBtn greenBtn" onClick={() => addToBasket(item)} />
+                    {renderAddButton(item)}
                 </div>
             </div>
         )

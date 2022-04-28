@@ -30,6 +30,8 @@
   padding-right: 7px;
   font-weight: 600;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
 }
 
 .redBtn {
@@ -40,8 +42,6 @@
 .greenBtn {
   background-color: #19d461;
   color: white;
-  display: flex;
-  justify-content: center;
 }
 
 /*Filter*/
@@ -109,4 +109,13 @@
 
 .quantity {
   margin-left: 5px;
+}
+
+.itemUnavailable {
+  background-color: #9e9e9e;
+  color: white;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

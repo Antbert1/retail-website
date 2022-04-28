@@ -1,10 +1,11 @@
 import { combineReducers } from 'redux';
-import { CLOTHING_LIST, FILTER_VALUE, FILTERED_CLOTHING_LIST, BASKET } from './actions';
+import { CLOTHING_LIST, FILTER_VALUE, FILTERED_CLOTHING_LIST, BASKET, BASKET_IDS } from './actions';
 const dataState = {
     clothingList: [],
     filteredClothingList: [],
     filterValue: "",
-    basket: []
+    basket: [],
+    basketIDs: []
 };
 
 const dataReducer = (state = dataState, action) => {
@@ -20,6 +21,9 @@ const dataReducer = (state = dataState, action) => {
             return state;
         case BASKET:
             state = Object.assign({}, state, { basket: action.basket });
+            return state;
+        case BASKET_IDS:
+            state = Object.assign({}, state, { basketIDs: action.basketIDs });
             return state;
         default:
             return state;

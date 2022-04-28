@@ -13,6 +13,7 @@ function RootPage() {
 
     useEffect(() => {
         //Initialise list from ItemList.js file. In reality this would be a fetch request to an api
+        clothingData.map(o => o.inBasket = false);
         dispatch(setClothingList(clothingData));
         dispatch(setFilteredClothingList(clothingData));
     }, []);
