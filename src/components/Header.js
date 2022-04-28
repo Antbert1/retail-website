@@ -11,9 +11,11 @@ function Header() {
     return (
         <div className="container-fluid topBanner">
             <div className="topBannerInner">
-                <div>Retail Website</div>
+                <Link to="/">
+                    <div className="titleItem">Retail Website</div>
+                </Link>
                 <Link to="/basket">
-                    <FontAwesomeIcon icon={faBasketShopping} className="shoppingBasket" onClick={goToBasket} />
+                    <FontAwesomeIcon icon={faBasketShopping} className="titleItem" onClick={goToBasket} />
                 </Link>
             </div>
         </div>

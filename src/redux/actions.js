@@ -1,8 +1,32 @@
-export const LOADING = 'LOADING';
+export const CLOTHING_LIST = 'CLOTHING_LIST';
+export const FILTERED_CLOTHING_LIST = 'FILTERED_CLOTHING_LIST';
+export const FILTER_VALUE = 'FILTER_VALUE';
+export const BASKET = 'BASKET';
 
-export function setLoading(loading) {
+export function setClothingList(clothingList) {
     return {
-        type: LOADING,
-        loading,
+        type: CLOTHING_LIST,
+        clothingList,
+    };
+}
+
+export function setFilteredClothingList(filteredClothingList) {
+    return {
+        type: FILTERED_CLOTHING_LIST,
+        filteredClothingList,
+    };
+}
+
+export function setFilterValue(filterValue) {
+    return {
+        type: FILTER_VALUE,
+        filterValue,
+    };
+}
+
+export function setBasket(basket) {
+    return {
+        type: BASKET,
+        basket,
     };
 }

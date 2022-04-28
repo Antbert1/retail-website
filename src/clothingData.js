@@ -90,4 +90,6 @@ var clothingData = [
         quantity: 5,
         image: "https://cdn.pixabay.com/photo/2016/10/07/19/05/girl-1722402_960_720.jpg"
     },
-]
+];
+
+export default clothingData;

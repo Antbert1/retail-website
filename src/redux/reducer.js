@@ -1,13 +1,25 @@
 import { combineReducers } from 'redux';
-import { LOADING } from './actions';
+import { CLOTHING_LIST, FILTER_VALUE, FILTERED_CLOTHING_LIST, BASKET } from './actions';
 const dataState = {
-    loading: true
+    clothingList: [],
+    filteredClothingList: [],
+    filterValue: "",
+    basket: []
 };
 
 const dataReducer = (state = dataState, action) => {
     switch (action.type) {
-        case LOADING:
-            state = Object.assign({}, state, { loading: action.loading });
+        case CLOTHING_LIST:
+            state = Object.assign({}, state, { clothingList: action.clothingList });
+            return state;
+        case FILTERED_CLOTHING_LIST:
+            state = Object.assign({}, state, { filteredClothingList: action.filteredClothingList });
+            return state;
+        case FILTER_VALUE:
+            state = Object.assign({}, state, { filterValue: action.filterValue });
+            return state;
+        case BASKET:
+            state = Object.assign({}, state, { basket: action.basket });
             return state;
         default:
             return state;
