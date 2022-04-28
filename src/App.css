@@ -20,6 +20,21 @@
   color: white;
 }
 
+.totalItems {
+  background: #19d461;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  width: 18px;
+  height: 18px;
+  border-radius: 18px;
+  position: absolute;
+  right: 38px;
+  font-weight: 600;
+}
+
 /*Buttons*/
 .customBtn {
   height: 30px;
@@ -42,6 +57,10 @@
 .greenBtn {
   background-color: #19d461;
   color: white;
+}
+
+.shortBtn {
+  max-width: 150px;
 }
 
 /*Filter*/
@@ -118,4 +137,50 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+/*Basket*/
+.subHeading {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+.itemInfo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.itemBlurb {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blurbParagraph {
+  margin-left: 10px;
+}
+
+.removeFromBasket {
+  text-align: right;
+  padding: 10px;
+  color: #d11b1b;
+  cursor: pointer;
+}
+
+.total {
+  font-size: 20px;
+}
+
+.payDetails {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.discount {
+  display: flex;
+  justify-content: space-between;
+  max-width: 500px;
+  font-size: 16px;
 }
