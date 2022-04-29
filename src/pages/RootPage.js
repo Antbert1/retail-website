@@ -4,11 +4,13 @@ import { setClothingList, setFilteredClothingList, setFilterValue } from '../red
 import Header from '../components/Header';
 import ItemList from '../components/ItemList';
 import Button from '../components/Button';
+//Clothing data imported from a file, rather than fetched from a db
 import clothingData from "../clothingData";
 
 function RootPage() {
     const dispatch = useDispatch();
     const filterValue = useSelector((state => state.dataReducer.filterValue));
+    //Save the full clothing list in redux, so that when it's filtered this can be referred back to rather than retrieving it again
     const fullClothingList = useSelector((state => state.dataReducer.clothingList));
 
     useEffect(() => {

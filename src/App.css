@@ -1,3 +1,8 @@
+/*Universal*/
+a:hover {
+  text-decoration: none;
+}
+
 /*Banner*/
 .topBanner {
   font-family: 'Montserrat', sans-serif;
@@ -140,6 +145,11 @@
 }
 
 /*Basket*/
+.basket {
+  margin-bottom: 20px;
+}
+
+
 .subHeading {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -149,6 +159,10 @@
 .itemInfo {
   display: flex;
   justify-content: space-between;
+}
+
+.clothingImageBasket {
+  width: 100%;
 }
 
 .itemBlurb {

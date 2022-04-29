@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSquare } from '@fortawesome/free-regular-svg-icons'
 import { faSquareCheck } from '@fortawesome/free-regular-svg-icons'
 import { setBasket, setBasketIDs } from '../redux/actions';
+import { getTotal } from '../util';
 import Button from '../components/Button';
 import Header from '../components/Header';
 
@@ -40,7 +41,7 @@ function Basket() {
     const [total, setTotal] = useState(0);
 
     useEffect(() => {
-        let total = getTotal();
+        let total = getTotal(basket);
         let discountsCopy = [...discounts];
         if (total > 50) {
             discountsCopy[1].visible = true;
@@ -84,7 +85,7 @@ function Basket() {
     const showDiscounts = (discount, index) => {
         if (discount.visible) {
             return (
-                <div className="discount" key={index}>
+                <div className="discount" key={discount.index} data-testid={discount.index}>
                     <div>{discount.title}</div>
                     {discount.active ?
                         <FontAwesomeIcon icon={faSquareCheck} onClick={() => removeDiscount(discount, index)} />
@@ -119,38 +120,37 @@ function Basket() {
                         {item.category.split(" ").map((cat, i) => showCategories(cat, i))}
                     </div>
                 </div>
-                <div className="itemInfo">
-                    <div className="itemImg">
-                        <img
-                            src={item.image}
-                            alt="clothing"
-                            className="clothingImage"
-                        />
-                    </div>
-                    <div className="itemBlurb">
-                        <div>
-                            <p className="blurbParagraph">
-                                Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
-                            <div className="price">
-                                £{item.price}
-                            </div>
+                <div className="row">
+                    <div className="col-md-4">
+                        <div className="itemImgBasket">
+                            <img
+                                src={item.image}
+                                alt="clothing"
+                                className="clothingImageBasket"
+                            />
                         </div>
-                        <div className="removeFromBasket" onClick={() => removeFromBasket(item)}>Remove From Basket</div>
                     </div>
-
+                    <div className="col-md-8">
+                        <div className="itemBlurb">
+                            <div>
+                                <p className="blurbParagraph">
+                                    Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</p>
+                                <div className="price">
+                                    £{item.price}
+                                </div>
+                            </div>
+                            <div className="removeFromBasket" onClick={() => removeFromBasket(item)}>Remove From Basket</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         )
     }
 
-    const getTotal = () => {
-        return (basket.reduce((n, { price }) => n + parseFloat(price), 0))
-    }
-
     return (
         <div>
             <Header />
-            <div className="container">
+            <div className="container basket">
                 <div className="row"><h2>Basket</h2></div>
                 {basketIDs.length === 0 ?
                     <div className="basketEmpty">Your basket is currently empty</div>
